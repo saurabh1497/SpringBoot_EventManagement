@@ -1,43 +1,60 @@
 package com.demo.model;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.sun.istack.Nullable;
+
 @Entity
 public class Event {
+	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long eventId;
+	private int eventId;
 	
+	
+	@Column(name = "event_name")
 	private String eventName;
 	
+	@Column(name = "count_of_panel")
 	private int countOfPanel; //total people participating
 	
+	
+	@Column(name = "skill_set")
 	private String skillSet;
+	
 	
 	private String date;
 	
+	
+	@Column(name = "esc_time")
 	private String escTime;
 	
+
 	private String status; //draft or publish
 	
+
+	@Column(name = "entry_count")
 	private int entryCount;
 	
 	@ManyToOne(cascade = {CascadeType.ALL})
+	
 	private Post post;
+	
 	
 	private Boolean action; //close or open
 
-	public Long getEventId() {
+	public int getEventId() {
 		return eventId;
 	}
 
-	public void setEventId(Long eventId) {
+	public void setEventId(int eventId) {
 		this.eventId = eventId;
 	}
 

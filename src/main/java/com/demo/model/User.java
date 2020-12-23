@@ -11,7 +11,7 @@ import javax.validation.constraints.NotEmpty;
 public class User {
 	
 	@Id
-	private Integer userID;
+	private Long userID;
 	
 	@NotEmpty
 	private String emailId;
@@ -28,11 +28,11 @@ public class User {
 	@OneToOne
 	private Post post;
 
-	public int getUserID() {
+	public Long getUserID() {
 		return userID;
 	}
 
-	public void setUserID(int userID) {
+	public void setUserID(Long userID) {
 		this.userID = userID;
 	}
 
