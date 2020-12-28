@@ -1,7 +1,6 @@
 package com.demo.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.model.Event;
-import com.demo.model.EventResponse;
 import com.demo.model.User;
+import com.demo.repositories.EventRepository;
 import com.demo.repositories.UserRepository;
 import com.demo.services.EventService;
 
@@ -25,6 +24,9 @@ public class EventManagerController {
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private EventRepository eventRepository;
 	
 	@GetMapping("/getallevents")	
 	public List<Event> getAllEvents() {
@@ -47,9 +49,9 @@ public class EventManagerController {
 	}
 	
 	@GetMapping("/geteventbyuserid/{userID}" )
-	public List<EventResponse> getEventByUserID(@PathVariable("userID") Long userID) {
+	public List<Event> getEventByUserID(@PathVariable("userID") Long userID) {
 		User user = userRepository.findByUserID(userID);
-		List<EventResponse> eventList = userRepository.findEventByUserID(user.getPost().getPostID());
-		return eventList;
+		List<Event> eventList = eventRepository.findevent(user.getPost().getPostID());
+		return eventList;		
 	}
 }

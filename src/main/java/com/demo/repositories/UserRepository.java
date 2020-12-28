@@ -27,13 +27,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 			+ "where participation.userID = :userID", nativeQuery = true)
 	Event findEventById(Long userID);
 	
-	@Query(value = "Select * FROM Event e LEFT JOIN Post p on e.post_postid = p.postid "
-			+ "where e.action = true "
-			+ "AND e.count_of_panel > e.entry_count "
-			+ "AND e.status = 'publish' "
-			+ "AND p.postid = :postID" , nativeQuery = true)
-	List<EventResponse> findEventByUserID(Long postID);
-	
 	@Query(value = "Select * from event" , nativeQuery = true)
 	List<Event> getAllEventsTest();
 }

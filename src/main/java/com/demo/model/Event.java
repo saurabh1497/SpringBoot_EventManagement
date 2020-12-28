@@ -16,7 +16,7 @@ public class Event {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int eventId;
+	private Long eventId;
 	
 	
 	@Column(name = "event_name")
@@ -50,16 +50,24 @@ public class Event {
 	
 	private Boolean action; //close or open
 
-	public int getEventId() {
-		return eventId;
-	}
-
-	public void setEventId(int eventId) {
-		this.eventId = eventId;
-	}
+//	public Integer getEventId() {
+//		return eventId;
+//	}
+//
+//	public void setEventId(Integer eventId) {
+//		this.eventId = eventId;
+//	}
 
 	public String getEventName() {
 		return eventName;
+	}
+
+	public Long getEventId() {
+		return eventId;
+	}
+
+	public void setEventId(Long eventId) {
+		this.eventId = eventId;
 	}
 
 	public void setEventName(String eventName) {
@@ -136,6 +144,9 @@ public class Event {
 				+ ", skillSet=" + skillSet + ", date=" + date + ", escTime=" + escTime + ", status=" + status
 				+ ", entryCount=" + entryCount + ", post=" + post + ", action=" + action + "]";
 	}
+
+
+	
 	
 	
 }
