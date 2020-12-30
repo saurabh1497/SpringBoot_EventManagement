@@ -13,44 +13,44 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 	@Autowired
 	private RegistrationRepository repo;
-	
-	public User saveUser (User user ) {
+
+	public User saveUser(User user) {
 		return repo.save(user);
 	}
-	
+
 	public User findUserByEmailId(User user) throws Exception {
-	
+
 		User existinguser = repo.findByEmailId(user.getEmailId());
-		if(existinguser==null) {
+		if (existinguser == null) {
 			return repo.save(user);
-		}else {
-			throw new Exception("User with "+user.getEmailId()+" already exists"); 
-	}
-}
-	public User findUserByEmailIdAndPassword(LoginModel loginModel) throws Exception {
-		if(loginModel.getPassword()==null) {
-			throw new Exception("Please enter a password...!!!");
-			
+		} else {
+			throw new Exception("User with " + user.getEmailId() + " already exists");
 		}
-		if(loginModel.getUserName()!=null) {
+	}
+
+	public User findUserByEmailIdAndPassword(LoginModel loginModel) throws Exception {
+		if (loginModel.getPassword() == null) {
+			throw new Exception("Please enter a password...!!!");
+
+		}
+		if (loginModel.getUserName() != null) {
 			User u = repo.findByUserName(loginModel.getUserName());
 			System.out.println(u);
-			if(loginModel.getPassword().equals(u.getPassword())) {
+			if (loginModel.getPassword().equals(u.getPassword())) {
 				return u;
-			}else {
-				throw new Exception("Bad Credentials..!!!"); 
+			} else {
+				throw new Exception("Bad Credentials..!!!");
 			}
-		}else if(loginModel.getEmailId()!=null) {
+		} else if (loginModel.getEmailId() != null) {
 			User u = repo.findByUserName(loginModel.getUserName());
-			if(loginModel.getPassword().equals(u.getPassword())) {
+			if (loginModel.getPassword().equals(u.getPassword())) {
 				return u;
-			}else {
-				throw new Exception("Bad Credentials..!!!"); 
+			} else {
+				throw new Exception("Bad Credentials..!!!");
 			}
-		}
-		else {
+		} else {
 			throw new Exception("Either Username or Email should be there!");
 		}
-		
+
 	}
 }

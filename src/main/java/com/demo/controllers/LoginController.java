@@ -12,21 +12,18 @@ import org.springframework.web.bind.annotation.RestController;
 import com.demo.model.User;
 import com.demo.repositories.UserRepository;
 
-
-
 @RestController
 public class LoginController {
 
 	@Autowired
 	private UserRepository userRepository;
-	
 
 	// check login provide correct user-name and password
 	@PostMapping("/loginuser")
 	public User showLoginPage(@RequestBody String[] authcust, User user) {
-		
-		//EventManagementApplication.valiadateEventDB();
-		
+
+		// EventManagementApplication.valiadateEventDB();
+
 		String username = authcust[0];
 		String password = authcust[1];
 		Boolean b1 = userRepository.existsByUserNameAndPassword(username, password);
@@ -45,9 +42,9 @@ public class LoginController {
 	// get details of employee provide user-name
 	@GetMapping("login/{username}")
 	public User showUserPage(@PathVariable String username, User user) {
-			
+
 		User u = userRepository.findByUserName(username);
-		if(u!=null) {
+		if (u != null) {
 			return u;
 		} else {
 			System.out.println("invalid");

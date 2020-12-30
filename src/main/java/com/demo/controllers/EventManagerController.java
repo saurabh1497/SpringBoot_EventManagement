@@ -3,6 +3,7 @@ package com.demo.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -48,6 +49,7 @@ public class EventManagerController {
 		return service.deleteEvent(id, event);	
 	}
 	
+	@CrossOrigin(origins = "http://localhost:4201")
 	@GetMapping("/geteventbyuserid/{userID}" )
 	public List<Event> getEventByUserID(@PathVariable("userID") Long userID) {
 		User user = userRepository.findByUserID(userID);
