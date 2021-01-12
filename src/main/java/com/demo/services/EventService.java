@@ -8,6 +8,6 @@ public interface EventService {
 
 	Event createEvent(Event event) throws Exception;
 	public Event getEvent(Long id);
-	public Event deleteEvent(Long id, Event event);
+	public void deleteEvent(Long id);
 	public List<Event> getAllEvents();
 }

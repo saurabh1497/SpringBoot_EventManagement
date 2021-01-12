@@ -33,7 +33,8 @@ public class EventManagerController {
 	public List<Event> getAllEvents() {
 		return service.getAllEvents();
 	}
-
+	
+	@CrossOrigin(origins = "http://localhost:4201")
 	@PostMapping("/createevent")
 	public Event createEvent(@RequestBody Event event) throws Exception {
 		return service.createEvent(event);
@@ -44,13 +45,14 @@ public class EventManagerController {
 		return service.getEvent(id);
 	}
 
-	@DeleteMapping("/deleteevent")
-	public Event deleteEvent(@RequestBody Event event, Long id) {
-		return service.deleteEvent(id, event);	
+	@CrossOrigin(origins = "http://localhost:4201")
+	@DeleteMapping("/deleteevent/{eventId}")
+	public void deleteEvent(@PathVariable("eventId") Long eventId) {
+		service.deleteEvent(eventId);	
 	}
 	
 	@CrossOrigin(origins = "http://localhost:4201")
-	@GetMapping("/geteventbyuserid/{userID}" )
+	@GetMapping("/geteventbyuserid/{userID}")
 	public List<Event> getEventByUserID(@PathVariable("userID") Long userID) {
 		User user = userRepository.findByUserID(userID);
 		List<Event> eventList = eventRepository.findevent(user.getPost().getPostID());

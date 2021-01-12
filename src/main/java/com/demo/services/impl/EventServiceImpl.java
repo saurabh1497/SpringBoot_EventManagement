@@ -53,9 +53,8 @@ public class EventServiceImpl implements EventService {
 		return e;	
 	}
 	
-	public Event deleteEvent(Long id, Event event) {
-		repo.deleteById(id);
-		return event;
+	public void deleteEvent(Long eventId) {
+		repo.deleteById(eventId);
 	}
 	
 	public List<Event> getAllEvents() {
